@@ -1,0 +1,12 @@
+# cloudbuild.frontend.yaml
+steps:
+- name: 'node:16' # Use a Node.js image to build the React app
+  entrypoint: npm
+  args: ['install']
+  dir: 'frontend' # Specify the directory where the frontend code will live
+- name: 'node:16'
+  entrypoint: npm
+  args: ['run', 'build']
+  dir: 'frontend'
+- name: 'firebase/hosting' # Use Firebase's Cloud Build builder for hosting
+  args: ['deploy', '--project=${PROJECT_ID}', '--only=hosting']

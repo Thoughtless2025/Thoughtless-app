@@ -1,0 +1,27 @@
+# cloudbuild.backend.yaml
+steps:
+# Build the Docker image for the backend
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_AR_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}', '.']
+  dir: 'backend' # Specify the directory where the backend code will live
+# Push the Docker image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_AR_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}']
+# Deploy the image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - '${_SERVICE_NAME}'
+  - '--image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_AR_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+  - '--region=${_LOCATION}'
+  - '--platform=managed'
+  - '--allow-unauthenticated' # Adjust based on your auth needs. For internal API, you might remove this.
+  - '--project=${PROJECT_ID}'
+
+# Define custom substitution variables for easier configuration
+substitutions:
+  _LOCATION: 'europe-west2' # e.g., europe-west2, us-central1 (MATCH THE REGION YOU CHOSE FOR TRIGGERS)
+  _AR_REPO_NAME: 'thoughtless-app-images' # Name for your Artifact Registry repository
+  _SERVICE_NAME: 'thoughtless-backend' # Name for your Cloud Run service
