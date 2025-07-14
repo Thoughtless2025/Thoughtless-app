@@ -47,3 +47,4 @@ The Thoughtless App leverages a modern, serverless architecture on Google Cloud 
 * **Automated CI/CD:** Streamlines deployment, reducing manual errors and accelerating development cycles, further enhanced by intelligent path-based triggers.
 * **Separation of Concerns:** Distinct frontend and backend services promote modularity and independent development.
 * **Scalability Out-of-the-Box:** Services are inherently designed to handle varying loads automatically.
+
