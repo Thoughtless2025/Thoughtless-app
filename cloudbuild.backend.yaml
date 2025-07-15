@@ -25,3 +25,6 @@ substitutions:
   _LOCATION: 'europe-west2' # e.g., europe-west2, us-central1 (MATCH THE REGION YOU CHOSE FOR TRIGGERS)
   _AR_REPO_NAME: 'thoughtless-app-images' # Name for your Artifact Registry repository
   _SERVICE_NAME: 'thoughtless-backend' # Name for your Cloud Run service
+
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET

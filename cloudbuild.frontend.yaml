@@ -10,3 +10,8 @@ steps:
   dir: 'frontend'
 - name: 'firebase/hosting' # Use Firebase's Cloud Build builder for hosting
   args: ['deploy', '--project=${PROJECT_ID}', '--only=hosting']
+
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+- name: 'firebase/hosting' # Use Firebase's Cloud Build builder for hosting
+  args: ['deploy', '--project=${PROJECT_ID}', '--only=hosting']
