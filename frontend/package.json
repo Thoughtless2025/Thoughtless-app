@@ -1,1 +1,1 @@
-{ "name": "thoughtless-frontend", "version": "0.1.0", "private": true, "dependencies": { "react": "^18.2.0", "react-dom": "^18.2.0" } }
+{"name":"thoughtless-frontend","version":"0.1.0","private":true,"dependencies":{"firebase":"^10.14.1","firebaseui":"^6.1.0","react":"^18.2.0","react-dom":"^18.2.0"},"scripts":{"start":"react-scripts start"},"devDependencies":{"react-scripts":"^5.0.1"}}
